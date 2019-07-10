@@ -37,6 +37,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "challenge_19"
+version = "0.1.0"
+dependencies = [
+ "challenge_17 0.1.0",
+]
+
+[[package]]
 name = "cloudabi"
 version = "0.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

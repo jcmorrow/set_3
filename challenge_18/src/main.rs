@@ -18,9 +18,8 @@ pub fn encrypt_aes_128_ctr(plaintext: &[u8], key: &str, nonce: &[u8]) -> Vec<u8>
     let mut counter = vec![0; 8];
     let mut encrypted: Vec<u8> = Vec::new();
     for block in plaintext.chunks(16) {
-
         let mut nonce_and_counter: Vec<u8> = Vec::new();
-        nonce_and_counter.extend(nonce.clone());
+        nonce_and_counter.extend(nonce);
         nonce_and_counter.extend(counter.clone());
         dbg!(&nonce_and_counter);
         let next_block = xor(&block, &encrypt_aes_128_ecb(&nonce_and_counter, key));
