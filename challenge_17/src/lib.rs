@@ -23,7 +23,6 @@ const POSSIBLE_TEXTS: [&str; 10] = [
     "MDAwMDA5aXRoIG15IHJhZy10b3AgZG93biBzbyBteSBoYWlyIGNhbiBibG93",
 ];
 
-
 pub fn decrypt_block(block: &[u8]) -> Vec<u8> {
     let blocksize = 16;
 
@@ -260,6 +259,24 @@ const BASE_64_ALPHABET: [char; 64] = [
     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4',
     '5', '6', '7', '8', '9', '+', '/',
 ];
+
+pub fn u32_byte_to_binary(c: u32) -> Vec<u8> {
+    let mut xs: Vec<u8> = Vec::new();
+    let mut quotient: u32 = c;
+    let mut remainder: u32;
+
+    while quotient > 0 {
+        remainder = quotient % 2;
+        dbg!(remainder);
+        dbg!(quotient);
+        quotient /= 2;
+        xs.push(remainder as u8);
+    }
+
+    xs = pad_with_null_bytes(&xs, 32);
+    xs.reverse();
+    xs
+}
 
 pub fn byte_to_binary(c: u8, bits: usize) -> Vec<u8> {
     let mut xs: Vec<u8> = Vec::new();
